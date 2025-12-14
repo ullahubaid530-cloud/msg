@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Code of Love, Just For You ❤️</title>
+    <style>
+        /* General Body and Container Styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #ff80ab 100%); /* Gradient background */
+            font-family: 'Times New Roman', serif; /* More elegant font */
+            text-align: center;
+            padding: 20px;
+        }
+        #message-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(136, 14, 79, 0.4);
+            max-width: 90%;
+            width: 550px;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            border: 6px solid #880e4f; /* Deep pink border */
+            animation: pulse-border 3s infinite;
+        }
+        #message-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(136, 14, 79, 0.6);
+        }
+
+        /* Pulse Animation for the border */
+        @keyframes pulse-border {
+            0% { border-color: #880e4f; }
+            50% { border-color: #ff80ab; }
+            100% { border-color: #880e4f; }
+        }
+
+        /* Message Display Area */
+        #main-text {
+            font-size: 2.5em;
+            color: #d63384; 
+            font-weight: bold;
+            min-height: 1.5em; 
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #f8bbd0;
+            transition: color 0.5s;
+        }
+        #instruction {
+            font-size: 1em;
+            color: #555;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Final Message Styles */
+        .final-style {
+            font-size: 1.2em !important;
+            color: #333 !important;
+            font-weight: normal !important;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            text-align: left; /* Align heartfelt letter to the left */
+            padding-top: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div id="message-box" onclick="nextMessage()">
+    <div id="main-text">Click to Open the Letter...</div>
+    <div id="instruction">Tap anywhere inside this box to reveal the next heartfelt line ❤️</div>
+</div>
+
+<script>
+    // 1. The sequence of loving call-outs (Tap to reveal each one)
+    const sequenceMessages = [
+        "Sun na !!!!! Meri Faziii",
+        "Meri Jaaaan, Meri Mikasa...",
+        "I need you to listen to this one last thing.",
+        "It's about US, and our future."
+    ];
+
+    // 2. The long, final, personal message (Use \n for line breaks)
+    const personalMessage = 
+`My Dearest Love,
+
+I love you so much. Seeing you unhappy breaks my heart, and I am truly sorry for the pain I have caused you regarding this issue.
+
+We have built two beautiful years together, and I want nothing more than to see us both happy and strong. Please know that my concern about the 'dressing issue' comes from a place of deep love and care, not a desire to control.
+
+I wish we could find a path forward where your wishes and what is fundamentally right for our journey together can coexist. This is your youth, and I respect your desires, but as your partner, I must also help us make the best choices for our shared life.
+
+Let’s talk, truly talk, and find the compromise that brings back our happiness.
+
+Forever Yours,
+Your Loving Husband.
+`;
+
+    let messageIndex = 0;
+    const mainTextElement = document.getElementById('main-text');
+    const instructionElement = document.getElementById('instruction');
+    const messageBox = document.getElementById('message-box');
+
+    function nextMessage() {
+        if (messageIndex < sequenceMessages.length) {
+            // Display the next short sequence message
+            mainTextElement.innerText = sequenceMessages[messageIndex];
+            mainTextElement.style.color = '#ff69b4'; // Change color for sequence
+            messageIndex++;
+        } else if (messageIndex === sequenceMessages.length) {
+            // Display the entire final message
+            
+            // Construct the final HTML (now just the personal message)
+            const finalHTMLContent = personalMessage;
+            
+            // Apply the final message text and style
+            mainTextElement.innerHTML = finalHTMLContent;
+            mainTextElement.classList.add('final-style');
+            
+            // Change the instruction text
+            instructionElement.innerText = "This is the final message. The ball is in your court, my love. ❤️";
+            instructionElement.style.color = '#880e4f';
+            instructionElement.style.fontWeight = 'bold';
+            
+            // Remove the click action after the final message is shown
+            messageBox.onclick = null;
+            messageBox.style.cursor = 'default';
+        }
+    }
+</script>
+
+</body>
+</html>
